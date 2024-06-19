@@ -1,7 +1,7 @@
 from flask import Flask, make_response, jsonify
 from flask_migrate import Migrate
 from models import db
-from blueprints.class_bp import class_bp
+from blueprints.course_bp import course_bp
 from blueprints.student_bp import student_bp
 
 app = Flask(__name__)
@@ -9,7 +9,8 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///school.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
 
-app.register_
+app.register_blueprint(course_bp)
+app.register_blueprint(student_bp)
 
 migrate = Migrate(app, db)
 
