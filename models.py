@@ -7,7 +7,7 @@ db = SQLAlchemy()
 class Student(db.Model, SerializerMixin):
     __tablename__ = "students"
 
-    serialize_rules = ('-enrolments.student',)
+    serialize_rules = ('-enrolments.student','-enrolments.course_id','-enrolments.id','-enrolments.student_id')
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
@@ -20,7 +20,7 @@ class Student(db.Model, SerializerMixin):
         return f"<Student {self.id}: {self.name} - {self.degree}>"
 
 class Course(db.Model, SerializerMixin):
-    __tablename__ = "classes"
+    __tablename__ = "courses"
 
     serialize_rules = ('-enrolments.course',)
 
